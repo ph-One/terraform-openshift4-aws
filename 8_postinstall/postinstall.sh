@@ -18,7 +18,7 @@ created_lb=""
 count=100
 
 while [ $found -eq 0 ]; do
-  lb_list=$(aws elb describe-load-balancers | jq '."LoadBalancerDescriptions" | .[]."LoadBalancerName"')
+  lb_list=$(aws elbv2 describe-load-balancers | jq '."LoadBalancers" | .[]."LoadBalancerName"')
 
   if [ -z $lb_list ]; then
     echo "Empty - $count retries left"
